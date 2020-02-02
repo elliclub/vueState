@@ -12,50 +12,50 @@
         </li>
       </ul>
     </div>
-    <div class="right"> </div>
-    <Stats />
+    <div class="right">
+      <Stats />
+    </div>
+    <div>
+      <DisplayData />
+    </div>
   </div>
 </template>
 
 <script>
-  import { mapState, mapMutations, mapActions } from 'vuex';
-  import Stats from '@/components/Stats.vue'
-  export default {
-    name: 'HelloWorld',
-    data() {
-      return {
-        newLink: ''
-      }
+import { mapState, mapMutations, mapActions } from "vuex";
+import Stats from "@/components/Stats.vue";
+import DisplayData from "@/components/DisplayData.vue";
+export default {
+  name: "HelloWorld",
+  data() {
+    return {
+      newLink: ""
+    };
+  },
+  components: {
+    Stats,
+    DisplayData
+  },
+  computed: {
+    ...mapState(["title", "links"])
+  },
+  methods: {
+    ...mapMutations(["ADD_LINK"]),
+    ...mapActions(["removeLink"]),
+    addLink: function() {
+      this.ADD_LINK(this.newLink);
+      this.newLink = "";
     },
-    components: {
-      Stats,
-    },
-    computed: {
-    ...mapState([
-      'title',
-      'links',
-    ]),
-
-    },
-    methods: {
-    ...mapMutations([
-      'ADD_LINK'
-    ]),
-    ...mapActions(['removeLink']),
-      addLink: function () {
-        this.ADD_LINK(this.newLink)
-        this.newLink = '';
-      },
-      removeLinks: function (link) {
-        this.removeLink(link)
-      },
+    removeLinks: function(link) {
+      this.removeLink(link);
     }
   }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  ul {
-    list-style-type: none;
-  }
+ul {
+  list-style-type: none;
+}
 </style>
