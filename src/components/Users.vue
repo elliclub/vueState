@@ -7,6 +7,8 @@
       <img :src="randomizedUser.avatar" />
       <div>Randomized user: {{randomizedUser.first_name }} {{randomizedUser.last_name}}</div>
       <div>Randomized user number: {{randomizedUser.id}}</div>
+      <button @click="reverseString()">Klick</button>
+      <span>{{reverseName}}</span>
     </div>
   </div>
 </template>
@@ -16,7 +18,8 @@ export default {
   data() {
     return {
       user: "",
-      randomizedUser: ""
+      randomizedUser: "",
+      reverseName: ""
     };
   },
   mounted() {
@@ -33,6 +36,13 @@ export default {
     randomize() {
       const random = Math.floor(Math.random() * this.user.length);
       return (this.randomizedUser = this.user[random]);
+    },
+    reverseString() {
+      let userTest = this.user.filter(u => u.id === 7);
+      this.reverseName = userTest[0].first_name
+        .split("")
+        .reverse()
+        .join("");
     }
   }
 };
