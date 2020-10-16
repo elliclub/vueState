@@ -4,7 +4,9 @@
     <span v-if="user">{{user[0].id}}</span>
     <div>
       <button @click="randomize()">Randomize!</button>
-      <div>Randomized user: {{randomizedUser}}</div>
+      <img :src="randomizedUser.avatar" />
+      <div>Randomized user: {{randomizedUser.first_name }} {{randomizedUser.last_name}}</div>
+      <div>Randomized user number: {{randomizedUser.id}}</div>
     </div>
   </div>
 </template>
@@ -30,7 +32,7 @@ export default {
     },
     randomize() {
       const random = Math.floor(Math.random() * this.user.length);
-      return (this.randomizedUser = this.user[random].first_name);
+      return (this.randomizedUser = this.user[random]);
     }
   }
 };
